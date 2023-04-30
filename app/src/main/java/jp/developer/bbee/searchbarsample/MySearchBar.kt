@@ -8,7 +8,6 @@ import jp.developer.bbee.searchbarsample.MainViewModel
 
 @Composable
 fun MySearchBar(
-    searchText: String = "",
     mainViewModel: MainViewModel = hiltViewModel()
 ) {
     TopAppBar {
