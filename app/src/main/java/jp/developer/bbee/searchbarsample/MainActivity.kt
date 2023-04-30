@@ -36,12 +36,7 @@ class MainActivity : ComponentActivity() {
                     ) {
                         LazyColumn(Modifier.padding(it)) {
                             items(itemList) { item ->
-                                Card(elevation = 5.dp, modifier = Modifier.padding(5.dp)) {
-                                    Column(modifier = Modifier.fillMaxWidth()) {
-                                        Text(text = item.title, fontWeight = FontWeight.ExtraBold)
-                                        Text(text = item.description)
-                                    }
-                                }
+                                MainCard(item)
                             }
                         }
                     }
