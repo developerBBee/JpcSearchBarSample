@@ -18,12 +18,9 @@ fun MainCard(
 ) {
     val searchText = mainViewModel.searchText.value
     val list = createSearchList(searchText)
-    if (searchText.isNotEmpty()
-        && !item.title.contains(searchText)
-        && !item.description.contains(searchText)
-    ) {
-        return
-    }
+    val isMatch = if (list.isEmpty()) true
+        else list.any { item.title.contains(it) || item.description.contains(it) }
+    if (!isMatch) return
     Card(elevation = 5.dp, modifier = Modifier.padding(5.dp)) {
         Column(modifier = Modifier.fillMaxWidth()) {
             Text(text = item.title, fontWeight = FontWeight.ExtraBold)
@@ -37,6 +34,7 @@ fun createSearchList(searchText: String): List<String> {
         .trim()
         .replace("　", " ")
         .split("\\s+".toRegex())
+        .map { convertToFullWidthKatakana(it) }
 }
 
 fun convertToFullWidthKatakana(input: String): String {
